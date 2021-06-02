@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/mainTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/secular_one"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:text="@string/MainTitle"
+            android:textColor="@color/colorGrey"
+            android:textSize="25sp"
+            android:textStyle="bold|italic" />
+
+
+        <TextView
+            android:id="@+id/mainDesc"
+            android:layout_below="@id/mainTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Maindesc"
+            android:textColor="@color/colorGrey"
+            android:textSize="10sp"
+            android:textStyle="italic"
+            android:fontFamily="@font/secular_one"
+            android:layout_marginLeft="30dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            />
+
+        <ImageView
+            android:id="@+id/option"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_more_vert_24"
+            android:layout_below="@id/mainDesc"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="50dp"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_search_24"
+            android:layout_below="@id/mainDesc"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="60dp"
+            android:layout_marginTop="50dp" />
+
+
+        <RelativeLayout
+            android:layout_below="@id/mainTitle"
+            android:layout_marginTop="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/unplashCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardBackgroundColor="@color/colorWhite"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="20dp">
+
+                <RelativeLayout
+                    android:layout_margin="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/unplashLogo"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/unplash_logo" />
+                    <TextView
+                        android:id="@+id/unplashTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/unplashLogo"
+                        android:layout_marginLeft="10dp"
+                        android:text="@string/UnplashTitle"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorBlack"/>
+                    <TextView
+                        android:id="@+id/unplashDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+
+                        android:layout_below="@id/unplashTitle"
+                        android:layout_toRightOf="@id/unplashLogo"
+                        android:text="@string/UnplashDesc"
+                        android:textColor="@color/colorSemiWhite"/>
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/switcher1"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        app:lottie_rawRes="@raw/switcher_bigger"
+                        android:layout_below="@id/unplashDesc"
+                        android:layout_marginLeft="10dp"
+                        android:padding="5dp" />
+
+                    <Button
+                        android:id="@+id/unplashEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@id/unplashDesc"
+                        android:text="Edit"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorGreen"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/colorTransparent" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+
+                android:layout_below="@id/unplashCard"
+                android:id="@+id/wallpaperCraftCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardBackgroundColor="@color/colorWhite"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="20dp">
+
+                <RelativeLayout
+                    android:layout_margin="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/wallpaperCraftLogo"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/wallpaper_craft_logo" />
+                    <TextView
+                        android:id="@+id/wallpaperCraftTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/wallpaperCraftLogo"
+                        android:layout_marginLeft="10dp"
+                        android:text="@string/WallpaperCraftTitle"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorBlack"/>
+                    <TextView
+                        android:id="@+id/wallpaperCraftDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+
+                        android:layout_below="@id/wallpaperCraftTitle"
+                        android:layout_toRightOf="@id/wallpaperCraftLogo"
+                        android:text="@string/WallpaperCraftDesc"
+                        android:textColor="@color/colorSemiWhite"/>
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/switcher2"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        app:lottie_rawRes="@raw/switcher_bigger"
+                        android:layout_below="@id/wallpaperCraftDesc"
+                        android:layout_marginLeft="10dp"
+                        android:padding="5dp" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@id/wallpaperCraftDesc"
+                        android:text="Edit"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorGreen"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/colorTransparent" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/wallpaperCraftCard"
+                android:text="@string/More"
+                android:textColor="@color/colorBlack"
+                android:textSize="15sp"
+                android:textStyle="italic"
+                android:paddingTop="30dp"
+                android:layout_centerHorizontal="true"/>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_below="@id/more"
+                android:layout_centerHorizontal="true"
+                android:paddingTop="20dp"
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                app:lottie_rawRes="@raw/loading_more"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

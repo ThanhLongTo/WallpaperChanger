@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UnplashActivity">
+
+    <RelativeLayout
+        android:id="@+id/mainView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/unplashMainTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/UnplashTitle"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/secular_one"
+            android:layout_centerHorizontal="true" />
+
+        <!--
+        <Button
+            android:id="@+id/btnSetWallpaperUnplash"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Set wallpaper"
+            android:layout_below="@id/unplashMainTitle"
+            android:layout_marginTop="60dp"/>
+            -->
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card1"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_below="@+id/unplashMainTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="10dp"
+            app:cardCornerRadius="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/timeSetIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_baseline_timer_24"
+                    android:layout_margin="10dp"/>
+
+                <TextView
+                    android:layout_margin="10dp"
+                    android:layout_toRightOf="@id/timeSetIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Loop"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorGrey"
+                    android:fontFamily="@font/secular_one"/>
+
+                <Spinner
+                    android:id="@+id/timeSetSpinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="10dp"/>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/card2"
+            android:layout_below="@+id/card1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="10dp"
+            app:cardCornerRadius="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/setupIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_baseline_settings_applications_24"
+                    android:layout_margin="10dp"/>
+
+                <TextView
+                    android:layout_margin="10dp"
+                    android:layout_toRightOf="@id/setupIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Setup"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorGrey"
+                    android:fontFamily="@font/secular_one"/>
+
+                <Button
+                    android:id="@+id/btnDownCard2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/ic_baseline_arrow_drop_down_24"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"/>
+
+                <RelativeLayout
+                    android:id="@+id/expandableCard2"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="70dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_marginTop="20dp"
+                        android:id="@+id/setupKey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Key  :"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorGrey"/>
+
+                    <EditText
+                        android:layout_alignBottom="@id/setupKey"
+                        android:layout_toRightOf="@id/setupKey"
+                        android:id="@+id/setupInputKey"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint=""
+                        android:textColorHint="@color/colorSemiWhite"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp"/>
+
+                    <TextView
+                        android:layout_marginTop="30dp"
+                        android:layout_below="@id/setupKey"
+                        android:id="@+id/setupOrientation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Orientation  :"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorGrey"/>
+
+                    <Spinner
+                        android:layout_alignTop="@id/setupOrientation"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@id/setupInputKey"
+                        android:id="@+id/setupInputOrientation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp" />
+
+                    <TextView
+                        android:layout_marginTop="30dp"
+                        android:layout_below="@id/setupOrientation"
+                        android:id="@+id/setupColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Color  :"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorGrey"/>
+
+                    <Spinner
+                        android:layout_alignTop="@id/setupColor"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@id/setupInputOrientation"
+                        android:id="@+id/setupInputColor"
+                        android:padding="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp" />
+
+                    <TextView
+                        android:layout_marginTop="30dp"
+                        android:layout_below="@id/setupColor"
+                        android:id="@+id/setupSort"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sort by  :"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorGrey"/>
+
+                    <Spinner
+                        android:layout_alignParentRight="true"
+                        android:layout_alignTop="@id/setupSort"
+                        android:layout_below="@id/setupInputColor"
+                        android:id="@+id/setupInputSort"
+                        android:padding="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        />
+
+                    <Button
+                        android:id="@+id/btnSaveInput"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@id/setupInputSort"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="30dp"
+                        android:background="@drawable/rounded_button"
+                        android:text="Save"
+                        android:textColor="#0091ff"/>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/card3"
+            android:layout_below="@+id/card2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="10dp"
+            app:cardCornerRadius="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/previewIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_baseline_4k_24"
+                    android:layout_margin="10dp"/>
+
+                <TextView
+                    android:layout_margin="10dp"
+                    android:layout_toRightOf="@id/previewIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Preview"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorGrey"
+                    android:fontFamily="@font/secular_one"/>
+
+                <Button
+                    android:id="@+id/btnDownCard3"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/ic_baseline_arrow_drop_down_24"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"/>
+
+            <RelativeLayout
+                android:id="@+id/expandableCard3"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="30dp"
+                    android:id="@+id/imagePreview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imagePreview"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/unplashThumbnailURL"
+                    android:text=""
+                    android:textSize="10sp"
+                    android:autoLink="all"
+                    android:clickable="true"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/unplashThumbnailURL"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/unplashImagelURL"
+                    android:text=""
+                    android:textSize="10sp"
+                    android:autoLink="all"
+                    android:clickable="true"/>
+
+                <Button
+                    android:id="@+id/btnLoadWallpaper"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/unplashImagelURL"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_button"
+                    android:text="Load wallpaper"
+                    android:padding="15dp"
+                    android:textColor="#0091ff"/>
+
+                <Button
+                    android:id="@+id/btnSetWallpaperUnplash"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/btnLoadWallpaper"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_button"
+                    android:text="Set wallpaper"
+                    android:padding="15dp"
+                    android:textColor="#0091ff"/>
+
+                <LinearLayout
+                    android:id="@+id/editBox"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/btnSetWallpaperUnplash"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:layout_marginRight="10dp"
+                        android:id="@+id/btnPrevious"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="30dp"
+                        android:background="@drawable/ic_baseline_skip_previous_24"
+                        android:textColor="#0091ff"/>
+
+                    <Button
+                        android:id="@+id/btnNext"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/ic_baseline_skip_next_24"
+                        android:textColor="#0091ff"/>
+
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_below="@id/editBox"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/btnReset"
+                    android:text="Reset"
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/rounded_red_button"/>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/card4"
+            android:layout_below="@+id/card3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="10dp"
+            app:cardCornerRadius="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/dataIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_baseline_data_usage_24"
+                    android:layout_margin="10dp"/>
+
+                <TextView
+                    android:layout_margin="10dp"
+                    android:layout_toRightOf="@id/dataIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Data"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorGrey"
+                    android:fontFamily="@font/secular_one"/>
+
+                <Button
+                    android:id="@+id/btnDownCard4"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/ic_baseline_arrow_drop_down_24"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"/>
+
+                <RelativeLayout
+                    android:id="@+id/expandableCard4"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/data1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Position  :  0"
+                        android:textSize="15sp"
+                        android:textStyle="italic"
+                        android:textColor="@color/colorGrey"/>
+
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@id/data1"
+                        android:id="@+id/data2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Input key  :  "
+                        android:textSize="15sp"
+                        android:textStyle="italic"
+                        android:textColor="@color/colorGrey"/>
+
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@id/data2"
+                        android:id="@+id/data3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Orientation  :  portrait"
+                        android:textSize="15sp"
+                        android:textStyle="italic"
+                        android:textColor="@color/colorGrey"/>
+
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@id/data3"
+                        android:id="@+id/data4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Color  :  none"
+                        android:textSize="15sp"
+                        android:textStyle="italic"
+                        android:textColor="@color/colorGrey"/>
+
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@id/data4"
+                        android:id="@+id/data5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sort  :  relevance"
+                        android:textSize="15sp"
+                        android:textStyle="italic"
+                        android:textColor="@color/colorGrey"/>
+
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+
+
+
+
+    </RelativeLayout>
+
+</ScrollView>

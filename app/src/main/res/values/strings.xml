@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Wallpaper</string>
+    <string name="MainTitle">Wallpaper Changer</string>
+    <string name="Maindesc">Customize your android</string>
+    <string name="UnplashTitle">Unplash</string>
+    <string name="UnplashDesc">Unsplash is a website dedicated to sharing stock photography under the Unsplash license</string>
+    <string name="WallpaperCraftTitle">Wallpaper Craft</string>
+    <string name="WallpaperCraftDesc">New and best 97000 of desktop wallpapers, hd backgrounds for pc and mac, laptop, tablet, mobile phone.</string>
+    <string name="More">More websites coming soon</string>
+    <string-array name="timeSetArray">
+        <item><b>30 min</b></item>
+        <item><b>1 hour</b></item>
+        <item><b>2 hour</b></item>
+        <item><b>4 hour</b></item>
+        <item><b>6 hour</b></item>
+        <item><b>12 hour</b></item>
+        <item><b>1 day</b></item>
+        <item><b>2 days</b></item>
+    </string-array>
+
+    <string-array name="setupInputOrientation">
+        <item><b>portrait</b></item>
+        <item><b>landscape</b></item>
+        <item><b>square</b></item>
+    </string-array>
+
+    <string-array name="setupInputColor">
+        <item><b>none</b></item>
+        <item><b>black_and_white</b></item>
+        <item><b>white</b></item>
+        <item><b>black</b></item>
+        <item><b>yellow</b></item>
+        <item><b>orange</b></item>
+        <item><b>red</b></item>
+        <item><b>purple</b></item>
+        <item><b>magenta</b></item>
+        <item><b>green</b></item>
+        <item><b>teal</b></item>
+        <item><b>blue</b></item>
+    </string-array>
+
+    <string-array name="setupInputSort">
+        <item><b>relevance</b></item>
+        <item><b>latest</b></item>
+    </string-array>
+</resources>
