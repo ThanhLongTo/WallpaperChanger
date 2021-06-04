@@ -77,7 +77,6 @@ public class UnplashActivity extends AppCompatActivity {
     int numberData = 0;
 
     ImageView imageView;
-    TextView unplashThumbnailURL;
     TextView unplashImageURL;
     Button btnNext;
     Button btnPrevious;
@@ -245,7 +244,6 @@ public class UnplashActivity extends AppCompatActivity {
 
 
         imageView = findViewById(R.id.imagePreview);
-        unplashThumbnailURL = findViewById(R.id.unplashThumbnailURL);
         unplashImageURL = findViewById(R.id.unplashImagelURL);
         btnLoadWallpaper = findViewById(R.id.btnLoadWallpaper);
         btnLoadWallpaper.setOnClickListener(new View.OnClickListener() {
@@ -310,6 +308,8 @@ public class UnplashActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Toast.makeText(UnplashActivity.this, "Data reseted", Toast.LENGTH_SHORT).show();
                 deleteDataUnplash();
+                loadDataUnplash();
+                updateViewUnplash();
             }
         });
 
@@ -344,9 +344,8 @@ public class UnplashActivity extends AppCompatActivity {
             mainHandlerUnplash.post(new Runnable() {
                 @Override
                 public void run() {
-                    unplashThumbnailURL.setText(dataList.get(0));
-                    unplashImageURL.setText(dataList.get(1));
-                    Glide.with(UnplashActivity.this).load(dataList.get(1)).into(imageView);
+                    unplashImageURL.setText(dataList.get(numberData));
+                    Glide.with(UnplashActivity.this).load(dataList.get(numberData)).into(imageView);
                 }
             });
         }
@@ -380,7 +379,7 @@ public class UnplashActivity extends AppCompatActivity {
             List<String> dataList = unplashWallpaper(inputKeyData, orientationData, colorData, sortData);
 
             File file = new File(Environment.getExternalStorageDirectory(), String.format("/wallpaperChanger/IMG%s.jpg", date));
-            try (InputStream in = new URL(dataList.get(1)).openStream()) {
+            try (InputStream in = new URL(dataList.get(numberData)).openStream()) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     Files.copy(in, Paths.get(String.valueOf(file)));
                 }
@@ -407,12 +406,8 @@ public class UnplashActivity extends AppCompatActivity {
         SharedPreferences sharedPreferencesUnplash = getSharedPreferences("UnplashData", MODE_PRIVATE);
         SharedPreferences.Editor editorUnplash = sharedPreferencesUnplash.edit();
 
-        if (numberData>=10) {
-            numberData = 0;
-            editorUnplash.putInt("numberData", numberData);
-        } else {
-            editorUnplash.putInt("numberData", numberData);
-        }
+
+        editorUnplash.putInt("numberData", numberData);
         editorUnplash.putString("inputKeyDefault", inputKey);
         editorUnplash.putString("orientationDefault", orientation);
         editorUnplash.putString("colorDefault", color);
@@ -424,10 +419,10 @@ public class UnplashActivity extends AppCompatActivity {
     public void loadDataUnplash() {
         SharedPreferences sharedPreferencesUnplash = getSharedPreferences("UnplashData", MODE_PRIVATE);
 
-        numberData = sharedPreferencesUnplash.getInt("numberData", MODE_PRIVATE);
+        numberData = sharedPreferencesUnplash.getInt("numberData", 0);
         inputKeyData = sharedPreferencesUnplash.getString("inputKeyDefault", "");
         orientationData = sharedPreferencesUnplash.getString("orientationDefault", "portrait");
-        colorData = sharedPreferencesUnplash.getString("colorDefault", "white");
+        colorData = sharedPreferencesUnplash.getString("colorDefault", "none");
         sortData = sharedPreferencesUnplash.getString("sortDefault", "relevance");
     }
 
@@ -457,58 +452,54 @@ public class UnplashActivity extends AppCompatActivity {
 
     public List<String> unplashWallpaper(String inputKeyData, String orientationData, String colorData, String sortData) throws IOException {
 
-        List<String> returnData = new ArrayList<>();
         List<String> linkData = new ArrayList<>();
-        String[] thumbnailData = {};
-        String imgData = "";
-
 
         if (sortData.equals("relevance")) {
             if (colorData.equals("none")) {
                 String unplashURL = String.format("https://unsplash.com/s/photos/%s?orientation=%s", inputKeyData, orientationData);
-                Document doc = Jsoup.connect(unplashURL).get();
+                Document doc = Jsoup.connect(unplashURL).userAgent("Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/W.X.Y.Z Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)").get();
                 Elements data1 = doc.select("a._2Mc8_");
 
                 for (Element value: data1) {
                     String link = value.attr("href");
-                    linkData.add("https://unsplash.com"+link);
+                    linkData.add("https://unsplash.com"+ link + "/download?force=true");
                 }
 
             } else {
                 String unplashURL = String.format("https://unsplash.com/s/photos/%s?orientation=%s&color=%s", inputKeyData, orientationData, colorData);
-                Document doc = Jsoup.connect(unplashURL).get();
+                Document doc = Jsoup.connect(unplashURL).userAgent("Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/W.X.Y.Z Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)").get();
                 Elements data1 = doc.select("a._2Mc8_");
 
                 for (Element value: data1) {
                     String link = value.attr("href");
-                    linkData.add("https://unsplash.com"+link);
+                    linkData.add("https://unsplash.com"+ link + "/download?force=true");
                 }
             }
 
         } else {
             if (colorData.equals("none")) {
                 String unplashURL = String.format("https://unsplash.com/s/photos/%s?%sorder_by=&orientation=%s", inputKeyData, sortData, orientationData);
-                Document doc = Jsoup.connect(unplashURL).get();
+                Document doc = Jsoup.connect(unplashURL).userAgent("Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/W.X.Y.Z Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)").get();
                 Elements data1 = doc.select("a._2Mc8_");
 
                 for (Element value: data1) {
                     String link = value.attr("href");
-                    linkData.add("https://unsplash.com"+link);
+                    linkData.add("https://unsplash.com"+ link + "/download?force=true");
                 }
             } else {
                 String unplashURL = String.format("https://unsplash.com/s/photos/%s?%sorder_by=&orientation=%s&color=%s", inputKeyData, sortData, orientationData, colorData);
-                Document doc = Jsoup.connect(unplashURL).get();
+                Document doc = Jsoup.connect(unplashURL).userAgent("Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/W.X.Y.Z Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)").get();
                 Elements data1 = doc.select("a._2Mc8_");
 
                 for (Element value: data1) {
                     String link = value.attr("href");
-                    linkData.add("https://unsplash.com"+link);
+                    linkData.add("https://unsplash.com"+ link + "/download?force=true");
                 }
             }
 
         }
 
-        //System.out.println(linkData);
+        /*
         Document doc2 = Jsoup.connect(linkData.get(numberData)).get();
 
         Elements thumbnail = doc2.select("div.c_6Je").select("img._2UpQX");
@@ -522,16 +513,15 @@ public class UnplashActivity extends AppCompatActivity {
                 imgData = detailedValue.attr("href");
             }
         }
+         */
 
         //System.out.println(linkData.get(numberData));
         //System.out.println(thumbnailData.length);
         //System.out.println(Arrays.toString(thumbnailData));
         //System.out.println(thumbnailData[0].substring(0,thumbnailData[0].indexOf(" ")));
+        //returnData.add(thumbnailData[numberData].substring(0,thumbnailData[numberData].indexOf(" ")));
 
-        returnData.add(thumbnailData[numberData].substring(0,thumbnailData[numberData].indexOf(" ")));
-        returnData.add(imgData);
-
-        return returnData;
+        return linkData;
     }
 
 
