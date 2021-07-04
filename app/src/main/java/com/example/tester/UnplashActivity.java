@@ -53,6 +53,7 @@ public class UnplashActivity extends AppCompatActivity {
     RelativeLayout mainView;
 
     Button btnSetWallpaperUnplash;
+    Button btnDownloadWallpaperUnplash;
     Spinner timeSetSpinner;
     EditText setupInputKey;
     Spinner setupInputOrientation;
@@ -245,6 +246,16 @@ public class UnplashActivity extends AppCompatActivity {
 
         imageView = findViewById(R.id.imagePreview);
         unplashImageURL = findViewById(R.id.unplashImagelURL);
+
+        btnDownloadWallpaperUnplash = findViewById(R.id.btnDownloadWallpaperUnplash);
+        btnDownloadWallpaperUnplash.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onClick(View view) {
+                downloadWallpaperUnplash();
+            }
+        });
+
         btnLoadWallpaper = findViewById(R.id.btnLoadWallpaper);
         btnLoadWallpaper.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -353,9 +364,9 @@ public class UnplashActivity extends AppCompatActivity {
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void setWallpaperUnplash() {
+    public void downloadWallpaperUnplash() {
 
-        File directory = new File(Environment.getExternalStorageDirectory(), "/wallpaperChanger");
+        File directory = new File(Environment.getExternalStorageDirectory(), "/DCIM/wallpaperChanger");
         if (!directory.exists()) {
             directory.mkdir();
         }
@@ -363,8 +374,49 @@ public class UnplashActivity extends AppCompatActivity {
         File[] dir1 = directory.listFiles();
         assert dir1 != null;
         Arrays.sort(dir1, Comparator.comparingLong(File::lastModified).reversed());
-        System.out.println(Arrays.toString(dir1));
-        System.out.println(dir1[dir1.length-1]);
+
+
+        if (dir1.length >= 10) {
+            File deleteFile = new File(String.valueOf(dir1[dir1.length - 1]));
+            deleteFile.delete();
+        }
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd-yyyy-HH-mm-ss", new Locale("vi", "VN"));
+        String date = simpleDateFormat.format(new Date());
+
+        try {
+            List<String> dataList = unplashWallpaper(inputKeyData, orientationData, colorData, sortData);
+
+            File file = new File(Environment.getExternalStorageDirectory(), String.format("/DCIM/wallpaperChanger/IMG%s.jpg", date));
+            try (InputStream in = new URL(dataList.get(numberData)).openStream()) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    Files.copy(in, Paths.get(String.valueOf(file)));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            Toast.makeText(UnplashActivity.this, String.valueOf(file), Toast.LENGTH_LONG).show();
+
+        } catch (IOException ie) {
+            ie.printStackTrace();
+        }
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void setWallpaperUnplash() {
+
+        File directory = new File(Environment.getExternalStorageDirectory(), "/DCIM/wallpaperChanger");
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
+
+        File[] dir1 = directory.listFiles();
+        assert dir1 != null;
+        Arrays.sort(dir1, Comparator.comparingLong(File::lastModified).reversed());
+//        System.out.println(Arrays.toString(dir1));
+//        System.out.println(dir1[dir1.length-1]);
 
         if (dir1.length >= 10) {
             File deleteFile = new File(String.valueOf(dir1[dir1.length - 1]));
@@ -378,7 +430,7 @@ public class UnplashActivity extends AppCompatActivity {
         try {
             List<String> dataList = unplashWallpaper(inputKeyData, orientationData, colorData, sortData);
 
-            File file = new File(Environment.getExternalStorageDirectory(), String.format("/wallpaperChanger/IMG%s.jpg", date));
+            File file = new File(Environment.getExternalStorageDirectory(), String.format("/DCIM/wallpaperChanger/IMG%s.jpg", date));
             try (InputStream in = new URL(dataList.get(numberData)).openStream()) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     Files.copy(in, Paths.get(String.valueOf(file)));
